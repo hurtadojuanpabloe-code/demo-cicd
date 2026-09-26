@@ -1,0 +1,30 @@
+name: Pipeline CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar código fuente
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Ejecutar pruebas unitarias
+        run: npm test
+
+      - name: Construir la aplicación
+        run: npm run build
+
+      - name: Despliegue de la aplicación
+        run: echo "Despliegue simulado ejecutado correctamente en producción."
